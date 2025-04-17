@@ -15,7 +15,7 @@ public class Main {
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
         } finally {
-            connection.close();
+            connection.close(); 
         }
     }
 }
