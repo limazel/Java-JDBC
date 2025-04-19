@@ -15,16 +15,18 @@ public class Main {
             connection = helper.getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM students");
+            ArrayList<Country> countries = new ArrayList<Country>();
             while(resultSet.next()) {
-                System.out.println("Student ID: " + resultSet.getInt("id"));
-                System.out.println("Student Name: " + resultSet.getString("name"));
-                System.out.println("Student Age: " + resultSet.getInt("age"));
-                System.out.println("------------------------------");
+                countries.add(new Country(
+                    resultSet.getString("Code"), 
+                resultSet.getString("Name"), 
+                resultSet.getString("Continent"), 
+                resultSet.getString("Region")));
+
             }
+            System.out.println(countries.size());
         } catch (SQLException exception) {
             helper.showErrorMessage(exception);
-        } catch (Exception exception) {
-            System.out.println("An unexpected error occurred: " + exception.getMessage());
         } finally {
             connection.close(); 
         }
